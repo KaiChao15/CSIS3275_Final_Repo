@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css">
+</head>
+<body>
+<div class="col-md-6 offset-3">
+    <form method="post" th:action="@{addCustomer}">
+        <div>
+            <label>Transition code Code</label>
+            <input class="form-control" type="text" name="id" th:value="${customer.id}" readonly> <span th:errors="${customer.id}"></span>
+        </div>
+        <div>
+            <label>Seat Code</label>
+            <input class="form-control" type="text" name="seatno" th:value="${customer.seatno}"> <span th:errors="${customer.seatno}"></span>
+        </div>
+        <div>
+            <label>Customer Name</label>
+            <input class="form-control" type="text" name="name" th:value="${customer.name}"> <span th:errors="${customer.name}"></span>
+        </div>
+        <div>
+            <label>Transaction Date</label>
+            <input class="form-control" type="date" name="tdate" th:value="${customer.tdate}"> <span th:errors="${customer.tdate}"></span>
+        </div>
+
+        <button type="submit" class="btn-primary" >Save</button>
+    </form>
+</div>
+</body>
+</html>

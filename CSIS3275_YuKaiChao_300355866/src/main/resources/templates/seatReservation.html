@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Seat Reservation System</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css">
+</head>
+<body>
+    <h1>Seat Reservation System</h1>
+    <p>Final Exam 3275 Software Engineering</p>
+        <div class="container mt-2 pre-scrollable">
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>A</th>
+                        <th>B</th>
+                        <th>D</th>
+                        <th>E</th>
+                        <th>F</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1A</td>
+                            <td>1B</td>
+                            <td>1C</td>
+                            <td>1D</td>
+                            <td>1E</td>
+                        </tr>
+                        <tr>
+                            <td>2A</td>
+                            <td>2B</td>
+                            <td>2C</td>
+                            <td>2D</td>
+                            <td>2E</td>
+                        </tr>
+                        <tr>
+                            <td>3A</td>
+                            <td>3B</td>
+                            <td>3C</td>
+                            <td>3D</td>
+                            <td>3E</td>
+                        </tr>
+                        <tr>
+                            <td>4A</td>
+                            <td>4B</td>
+                            <td>4C</td>
+                            <td>4D</td>
+                            <td>4E</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="container mt-2">
+            <p>There are <span th:text="${seatCounter}"></span> remaining seats</p>
+            <form method="post" th:action="@{addCustomer}">
+                <div>
+                    <label>Seat Code</label>
+                    <input class="form-control" type="text" name="seatno" th:value="${customer.seatno}"> <span th:errors="${customer.seatno}"></span>
+                </div>
+                <div>
+                    <label>Customer Name</label>
+                    <input class="form-control" type="text" name="name" th:value="${customer.name}"> <span th:errors="${customer.name}"></span>
+                </div>
+                <div>
+                    <label>Transaction Date</label>
+                    <input class="form-control" type="date" name="tdate" th:value="${customer.tdate}"> <span th:errors="${customer.tdate}"></span>
+                </div>
+
+                <button type="submit" class="btn-primary" >Reserve</button>
+            </form>
+        </div>
+
+        <div class="container mt-2 pre-scrollable">
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Transaction Code</th>
+                        <th>Date</th>
+                        <th>Seat Number</th>
+                        <th>Name</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="p:${customerlist}">
+                        <td th:text="${p.getId()}"></td>
+                        <td th:text="${p.getTdate()}"></td>
+                        <td th:text="${p.getSeatno()}"></td>
+                        <td th:text="${p.getName()}"></td>
+                        <td>
+                            <a class="btn btn-danger" onclick="return confirm('Are you sure you want to delete the data?')" th:href="@{delete(id=${p.id})}">Delete</a>
+                        </td>
+
+                        <td>
+                            <a class="btn btn-success" th:href="@{editCustomer(id=${p.id})}"> Edit</a>
+                        </td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+</body>
+</html>
